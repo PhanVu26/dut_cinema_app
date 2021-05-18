@@ -212,6 +212,7 @@ export default class MoviePopup extends Component {
 
   render() {
     const {
+      movieShowtime,
       movie,
       chosenDay,
       chosenTime,
@@ -221,8 +222,16 @@ export default class MoviePopup extends Component {
     } = this.props;
     // Pull out movie data
     const { name, country, description, duration } = movie || {};
-    const days = [ 'Today', 'Tomorrow' ];
-    const times = [ '9:00 AM', '11:10 AM', '12:00 PM', '1:50 PM', '4:30 PM', '6:00 PM', '7:10 PM', '9:45 PM' ];
+    const {showtimes} = movieShowtime || {};
+    console.log("showtime inpopo", movieShowtime)
+    const days = showtimes?.map(sh => {
+      return sh.startTime.split('T')[0]
+    })
+    const times = showtimes?.map(sh => {
+      return sh.startTime.split('T')[1].slice(0,5)
+    })
+    //const days = [ 'Today', 'Tomorrow' ];
+    //const times = [ '9:00 AM', '11:10 AM', '12:00 PM', '1:50 PM', '4:30 PM', '6:00 PM', '7:10 PM', '9:45 PM' ];
     const poster = "https://th.bing.com/th/id/R9d00690a9f0f98794933edcfd7567444?rik=8htbu1GVX%2bQ7gw&pid=ImgRaws"
     // Render nothing if not visible
     if (!this.state.visible) {

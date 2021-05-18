@@ -40,7 +40,7 @@ export default class Options extends Component {
           snapToInterval={optionWith}
           style={styles.options}
         >
-          {values.map((value, index) =>
+          {values?.map((value, index) =>
             <View style={{ width: optionWith }} key={index}>
               <Option
                 value={value}

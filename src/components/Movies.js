@@ -10,16 +10,18 @@ import {
 import MoviePoster from './MoviePoster';
 import MoviePopup from './MoviePopup';
 
-@connect(
-  state => ({
-    movies: state.movies,
-    loading: state.loading,
-  }),
-  dispatch => ({
-    refresh: () => dispatch({type: 'GET_MOVIE_DATA'}),
-  }),
-)
-export default class Movies extends Component {
+// @connect(
+//   state => ({
+//     movies: state.movies,
+//     loading: state.loading,
+//     movieShowtime: state.movieShowtime
+//   }),
+//   dispatch => ({
+//     refresh: () => dispatch({type: 'GET_MOVIE_DATA'}),
+//     getShowtime : () => dispatch({type: 'GET_SHOWTIME_DATA', payload: movie})
+//   }),
+// )
+class Movies extends Component {
 
   state = {
     popupIsOpen: false,
@@ -28,11 +30,13 @@ export default class Movies extends Component {
     // Time chosen by user
     chosenTime: null,
   }
-
-  openMovie = (movie) => {
+  openMovie = async (movie) => {
+    await this.props.getShowtime(movie);
+    console.log(this.props.movieShowtime)
     this.setState({
       popupIsOpen: true,
-      movie,
+      movieShowtime: this.props.movieShowtime,
+      movie
     });
   }
 
@@ -75,7 +79,8 @@ export default class Movies extends Component {
 
   render() {
     const { movies, loading, refresh } = this.props;
-    console.log("movie", movies)
+    console.log("movie hhhh", movies)
+    console.log("showtime hhhh", this.props.movieShowtime )
     return (
       <View style={styles.container}>
         {movies
@@ -104,6 +109,7 @@ export default class Movies extends Component {
             />
         }
         <MoviePopup
+          movieShowtime = {this.props.movieShowtime}
           movie={this.state.movie}
           isOpen={this.state.popupIsOpen}
           onClose={this.closeMovie}
@@ -133,3 +139,21 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',       // allow multiple rows
   },
 });
+
+
+const mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    loading: state.loading,
+    movieShowtime: state.movieShowtime
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) =>{
+  return {
+    refresh: () => dispatch({type: 'GET_MOVIE_DATA'}),
+    getShowtime : (movie) => dispatch({type: 'GET_SHOWTIME_DATA', payload: movie})
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Movies);
