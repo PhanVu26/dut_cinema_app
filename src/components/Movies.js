@@ -24,15 +24,15 @@ import Confirmation from './Confirmation';
 // )
 class Movies extends Component {
 
-  componentDidMount() {
-    this.props.refresh();
-    this.willFocusSubscription = this.props.navigation.addListener(
-      'willFocus',
-      () => {
-        this.props.refresh();
-      }
-    );
-  }
+  // componentDidMount() {
+  //   this.props.refresh();
+  //   this.willFocusSubscription = this.props.navigation.addListener(
+  //     'willFocus',
+  //     () => {
+  //       this.props.refresh();
+  //     }
+  //   );
+  // }
 
   state = {
     popupIsOpen: false,

@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
   container: {
     marginLeft: 10,
     marginBottom: 10,
-    height: (height - 20 - 20) / rows - 10,
-    width: (width - 10) / cols - 10,
+    height: (height + 10) / rows + 10,
+    width: (width + 50) / cols + 10,
   },
   imageContainer: {
     flex: 1,                          // take up all available space

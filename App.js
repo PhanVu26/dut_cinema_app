@@ -25,6 +25,9 @@ const store = createStore(reducer, {}, applyMiddleware(apiMiddleware));
 // Fetch movie data
 store.dispatch({type: 'GET_MOVIE_DATA'});
 
+
+import HomePage from "./src/screens/HomePage"
+
 // const RouteMapper = (route, navigator) => {
 //   if (route.name === 'movies') {
 //     return (
@@ -76,7 +79,7 @@ function MyTabs() {
     >
       <Tab.Screen
         name="Movies"
-        component={Movies}
+        component={HomePage}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
