@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import MoviePoster from './MoviePoster';
 import MoviePopup from './MoviePopup';
+import Confirmation from './Confirmation';
 
 // @connect(
 //   state => ({
@@ -22,6 +23,16 @@ import MoviePopup from './MoviePopup';
 //   }),
 // )
 class Movies extends Component {
+
+  componentDidMount() {
+    this.props.refresh();
+    this.willFocusSubscription = this.props.navigation.addListener(
+      'willFocus',
+      () => {
+        this.props.refresh();
+      }
+    );
+  }
 
   state = {
     popupIsOpen: false,
@@ -69,11 +80,12 @@ class Movies extends Component {
       // Close popup
       this.closeMovie();
       // Navigate away to Confirmation route
-      this.props.navigator.push({
-        name: 'confirmation',
-        // Generate random string
-        code: Math.random().toString(36).substring(6).toUpperCase(),
-      });
+      // this.props.navigator.push({
+      //   name: 'confirmation',
+      //   // Generate random string
+      //   code: Math.random().toString(36).substring(6).toUpperCase(),
+      // });
+      return <Confirmation></Confirmation>
     }
   }
 
