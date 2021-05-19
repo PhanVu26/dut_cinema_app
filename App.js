@@ -27,6 +27,8 @@ store.dispatch({type: 'GET_MOVIE_DATA'});
 
 
 import HomePage from "./src/screens/HomePage"
+import Cinema from "./src/components/Cinema"
+import BookTicket from "./src/components/BookTicket"
 
 // const RouteMapper = (route, navigator) => {
 //   if (route.name === 'movies') {
@@ -55,13 +57,13 @@ function Profile() {
   );
 }
 
-function Notifications() {
+function Notifications({navigation}) {
   return (
     <Button
     title="Go somewhere"
     onPress={() => {
       // Navigate using the `navigation` prop that you received
-      navigation.navigate('movies');
+      navigation.navigate('Movies');
     }}
   />
   );
@@ -81,7 +83,7 @@ function MyTabs() {
         name="Movies"
         component={HomePage}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: 'Trang Chủ',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
@@ -89,9 +91,9 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Notifications"
-        component={Notifications}
+        component={Cinema}
         options={{
-          tabBarLabel: 'Updates',
+          tabBarLabel: 'Đặt vé',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="bell" color={color} size={size} />
           ),
@@ -101,7 +103,7 @@ function MyTabs() {
         name="Profile"
         component={Profile}
         options={{
-          tabBarLabel: 'Profile',
+          tabBarLabel: 'Cá nhân',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="account" color={color} size={size} />
           ),
@@ -111,12 +113,15 @@ function MyTabs() {
   );
 }
 
-
+const Stack = createStackNavigator();
 export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <MyTabs />
+      <Stack.Navigator initialRouteName="DUT Cinema">
+        <Stack.Screen name="DUT Cinema" component={MyTabs} />
+        <Stack.Screen name="BookTicket" component={BookTicket} />
+      </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
