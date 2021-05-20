@@ -44,14 +44,16 @@ class Movies extends Component {
   openMovie = async (movie) => {
     await this.props.getShowtime(movie);
     console.log(this.props.movieShowtime)
-    this.setState({
-      popupIsOpen: true,
-      movieShowtime: this.props.movieShowtime,
-      movie
-    });
+    // this.setState({
+    //   popupIsOpen: true,
+    //   movieShowtime: this.props.movieShowtime,
+    //   movie
+    // });
+    this.props.navigation.navigate("Movies")
   }
 
   closeMovie = () => {
+    console.log("close")
     this.setState({
       popupIsOpen: false,
       // Reset values to default ones

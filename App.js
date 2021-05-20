@@ -29,6 +29,7 @@ store.dispatch({type: 'GET_MOVIE_DATA'});
 import HomePage from "./src/screens/HomePage"
 import Cinema from "./src/components/Cinema"
 import BookTicket from "./src/components/BookTicket"
+import MovieDetail from './src/components/MovieDetail'
 
 // const RouteMapper = (route, navigator) => {
 //   if (route.name === 'movies') {
@@ -121,6 +122,7 @@ export default function App() {
       <Stack.Navigator initialRouteName="DUT Cinema">
         <Stack.Screen name="DUT Cinema" component={MyTabs} />
         <Stack.Screen name="BookTicket" component={BookTicket} />
+        <Stack.Screen name="MovieDetail" component={MovieDetail} />
       </Stack.Navigator>
       </NavigationContainer>
     </Provider>
