@@ -5,7 +5,7 @@ import Carousel from '../components/Carousel';
 import Movies from '../components/Movies';
 import * as actions from '../actions/index'
 
-export default function HomePage() {
+export default function HomePage(props) {
     // const dispatch = useDispatch();
     // const movies = useSelector(state => state.movies)
     // useEffect(() => {
@@ -22,7 +22,7 @@ export default function HomePage() {
             </View>
             <View style={{ flex: 5, backgroundColor:333 }} >
                 <Text>In comming</Text>
-                <Movies></Movies>
+                <Movies navigation={props.navigation}></Movies>
             </View>
         </View>
     )

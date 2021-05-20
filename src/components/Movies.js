@@ -24,15 +24,18 @@ import Confirmation from './Confirmation';
 // )
 class Movies extends Component {
 
-  // componentDidMount() {
-  //   this.props.refresh();
-  //   this.willFocusSubscription = this.props.navigation.addListener(
-  //     'willFocus',
-  //     () => {
-  //       this.props.refresh();
-  //     }
-  //   );
-  // }
+  constructor(props){
+    super(props)
+  }
+  componentDidMount() {
+    this.props.refresh();
+    const willFocusSubscription = this.props.navigation.addListener(
+      'focus',
+      () => {
+        this.props.refresh();
+      }
+    );
+  }
 
   state = {
     popupIsOpen: false,
@@ -44,22 +47,22 @@ class Movies extends Component {
   openMovie = async (movie) => {
     await this.props.getShowtime(movie);
     console.log(this.props.movieShowtime)
-    // this.setState({
-    //   popupIsOpen: true,
-    //   movieShowtime: this.props.movieShowtime,
-    //   movie
-    // });
-    this.props.navigation.navigate("Movies")
+    //this.props.navigation.navigate("MovieDetail")
+    this.setState({
+      popupIsOpen: true,
+      movieShowtime: this.props.movieShowtime,
+      movie
+    });
   }
 
   closeMovie = () => {
-    console.log("close")
     this.setState({
       popupIsOpen: false,
       // Reset values to default ones
       chosenDay: 0,
       chosenTime: null,
     });
+    this.props.refresh()
   }
 
   chooseDay = (day) => {
@@ -81,18 +84,16 @@ class Movies extends Component {
     } else {
       // Close popup
       this.closeMovie();
-      // Navigate away to Confirmation route
-      // this.props.navigator.push({
-      //   name: 'confirmation',
-      //   // Generate random string
-      //   code: Math.random().toString(36).substring(6).toUpperCase(),
-      // });
-      return <Confirmation></Confirmation>
+      //Navigate away to Confirmation route
+      this.props.navigation.navigate('Confirmation',{
+        // Generate random string
+        code: Math.random().toString(36).substring(6).toUpperCase(),
+      });
     }
   }
 
   render() {
-    const { movies, loading, refresh } = this.props;
+    const { movies, loading, refresh, navigation } = this.props;
     console.log("movie hhhh", movies)
     console.log("showtime hhhh", this.props.movieShowtime )
     return (
@@ -112,6 +113,7 @@ class Movies extends Component {
             >
               {movies.map((movie, index) => <MoviePoster
                 movie={movie}
+                navigation = {navigation}
                 onOpen={this.openMovie}
                 key={index}
               />)}

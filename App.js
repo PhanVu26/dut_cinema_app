@@ -123,6 +123,7 @@ export default function App() {
         <Stack.Screen name="DUT Cinema" component={MyTabs} />
         <Stack.Screen name="BookTicket" component={BookTicket} />
         <Stack.Screen name="MovieDetail" component={MovieDetail} />
+        <Stack.Screen name="Confirmation" component={Confirmation} />
       </Stack.Navigator>
       </NavigationContainer>
     </Provider>
