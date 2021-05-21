@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import {StyleSheet} from 'react-native'
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
-export default class ListThumbnailExample extends Component {
+class Cinema extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -23,6 +24,10 @@ export default class ListThumbnailExample extends Component {
                 }
             ]
         }
+    }
+    componentDidMount() {
+      //this.props.fetchTheaterData();
+      console.log("theater",this.props.theater);
     }
     renderCinema(list){
         const rs = list.map(item => {
@@ -66,4 +71,17 @@ const styles = StyleSheet.create({
       marginTop:0
     },
   });
+
+const mapStateToProps = (state) => {
+  return {
+    theater: state.theater
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    fetchTheaterData : () => dispatch({type: 'GET_THEATER_DATA'})
+  }
+}
   
+export default connect(mapStateToProps, mapDispatchToProps)(Cinema);
