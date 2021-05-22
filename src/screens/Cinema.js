@@ -7,30 +7,31 @@ class Cinema extends Component {
     constructor(props){
         super(props)
         this.state = {
-            list : [
-                {
-                    name: "Galaxy Cinema",
-                    addr: "60 Nguyến Tất Thành, Đà Nẵng",
-                    thumbnail: "https://www.galaxycine.vn/media/2019/5/6/rapgiave-hinhrap-nvq-02_1557131228718.jpg"
-                },
-                {
-                    name: "Cinema 1",
-                    addr: "60 Nguyến Tất Thành, Đà Nẵng",
-                    thumbnail: "https://s3img.vcdn.vn/123phim/2018/09/galaxy-vinh-15381284927851.jpg"
-                },
-                {
-                    name: "Cinema 2",
-                    addr: "60 Nguyến Tất Thành, Đà Nẵng",
-                    thumbnail: "https://www.galaxycine.vn/media/2019/5/6/rapgiave-hinhrap-pvc-02_1557133353602.jpg"
-                }
-            ]
+            // list : [
+            //     {
+            //         name: "Galaxy Cinema",
+            //         addr: "60 Nguyến Tất Thành, Đà Nẵng",
+            //         thumbnail: "https://www.galaxycine.vn/media/2019/5/6/rapgiave-hinhrap-nvq-02_1557131228718.jpg"
+            //     },
+            //     {
+            //         name: "Cinema 1",
+            //         addr: "60 Nguyến Tất Thành, Đà Nẵng",
+            //         thumbnail: "https://s3img.vcdn.vn/123phim/2018/09/galaxy-vinh-15381284927851.jpg"
+            //     },
+            //     {
+            //         name: "Cinema 2",
+            //         addr: "60 Nguyến Tất Thành, Đà Nẵng",
+            //         thumbnail: "https://www.galaxycine.vn/media/2019/5/6/rapgiave-hinhrap-pvc-02_1557133353602.jpg"
+            //     }
+            // ]
         }
     }
     componentDidMount(){
       this.props.getCinemas();
     }
     renderCinema(list){
-        const rs = list.map(item => {
+      let rs = list===undefined?[]: list;
+      const res = rs.map(item => {
             return (
                 <ListItem thumbnail>
                 <Left>
@@ -52,7 +53,7 @@ class Cinema extends Component {
               </ListItem> 
             )
         })
-        return rs;
+        return res;
     }
   render() {
     const cinemas = this.props.cinemas;
@@ -68,6 +69,7 @@ class Cinema extends Component {
       </Container>
       </ScrollView>
     );
+
   }
 }
 

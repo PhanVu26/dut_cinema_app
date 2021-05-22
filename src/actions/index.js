@@ -1,5 +1,5 @@
-import * as types from '../constants/actionTypes';
-import callApi from '../utils/apiCallerServer';
+import * as types from "../constants/actionTypes";
+import callApi from "../utils/apiCallerServer";
 
 // movies actions
 export const actFetchDataMoviesRequest = () => {
@@ -51,5 +51,19 @@ export const actFetchCinemaShowtimes = (cinemaShowtime) => {
   return {
     type: types.GET_CINEMA_SHOWTIMES,
     cinemaShowtime,
+  };
+};
+export const actLogin = (user) => {
+  return {
+    type: types.GET_USER_DATA,
+    user,
+  };
+};
+
+export const actLoginRequest = (account) => {
+  return (dispatch) => {
+    return callApi("/auth/login", "POST", account).then((res) => {
+      dispatch(actLogin(res.data));
+    });
   };
 };

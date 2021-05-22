@@ -16,6 +16,12 @@ import NavigationTab from './src/components/Tab/NavigationTab'
 import ListMovie from './src/screens/ListMovie';
 
 
+import LogOutScreen from "./src/screens/LogOutScreen";
+import AuthScreen from "./src/screens/AuthScreen";
+import LoginScreen from "./src/screens/LoginScreen";
+import RegisterScreen from "./src/screens/RegisterScreen";
+import TempScreen from "./src/screens/TempScreen";
+
 const store = createStore(rootReducer,applyMiddleware(thunk));
 const Stack = createStackNavigator();
 
@@ -23,23 +29,20 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-      <Stack.Navigator initialRouteName="DUT Cinema">
-        <Stack.Screen name="DUT Cinema" component={NavigationTab} />
-        <Stack.Screen name="BookTicket" component={BookTicket} />
-        <Stack.Screen name="MovieDetail" component={MovieDetail} />
-        <Stack.Screen name="Confirmation" component={Confirmation} />
-        <Stack.Screen name="ListMovie" component={ListMovie} />
-      </Stack.Navigator>
+        <Stack.Navigator initialRouteName="DUT Cinema">
+          <Stack.Screen name="DUT Cinema" component={NavigationTab} />
+          <Stack.Screen name="BookTicket" component={BookTicket} />
+          <Stack.Screen name="MovieDetail" component={MovieDetail} />
+          <Stack.Screen name="Confirmation" component={Confirmation} />
+          <Stack.Screen name="ListMovie" component={ListMovie} />
+          {/* <Stack.Screen name="Temp" component={TempScreen} /> */}
+          <Stack.Screen name="Auth" component={AuthScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="LogOut" component={LogOutScreen} />
+        </Stack.Navigator>
       </NavigationContainer>
     </Provider>
   );
 }
-
-
-
-
-
-
-
-
 

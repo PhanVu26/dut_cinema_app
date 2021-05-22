@@ -4,6 +4,7 @@ import React from 'react'
 import HomePage from '../../screens/HomePage';
 import Profile from '../../screens/Profile';
 import Cinema from '../../screens/Cinema';
+import TempScreen from '../../screens/TempScreen';
 const NavigationTab = () => {
     const Tab = createBottomTabNavigator();
     return (
@@ -35,7 +36,7 @@ const NavigationTab = () => {
         />
         <Tab.Screen
           name="Profile"
-          component={Profile}
+          component={TempScreen}
           options={{
             tabBarLabel: 'Cá nhân',
             tabBarIcon: ({ color, size }) => (
