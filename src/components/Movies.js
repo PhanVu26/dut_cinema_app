@@ -49,12 +49,15 @@ class Movies extends Component {
     this.props.getCinemas();
     this.props.getShowtime(movie);
     console.log(this.props.movieShowtime)
-    //this.props.navigation.navigate("MovieDetail")
-    this.setState({
-      popupIsOpen: true,
-      movieShowtime: this.props.movieShowtime,
-      movie
-    });
+    this.props.navigation.navigate("MovieDetail",{
+      movie:movie,
+      cinemas: this.props.cinemas
+    })
+    // this.setState({
+    //   popupIsOpen: true,
+    //   movieShowtime: this.props.movieShowtime,
+    //   movie
+    // });
   }
 
   closeMovie = () => {

@@ -29,8 +29,8 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="DUT Cinema">
-          <Stack.Screen name="DUT Cinema" component={NavigationTab} />
+        <Stack.Navigator initialRouteName="DUTCinema">
+          <Stack.Screen name="DUTCinema" component={NavigationTab} />
           <Stack.Screen name="BookTicket" component={BookTicket} />
           <Stack.Screen name="MovieDetail" component={MovieDetail} />
           <Stack.Screen name="Confirmation" component={Confirmation} />
