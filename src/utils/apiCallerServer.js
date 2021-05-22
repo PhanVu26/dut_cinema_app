@@ -1,12 +1,24 @@
+import { AsyncStorage } from "react-native";
+
 import axios from "axios";
 import * as Config from "../constants/config";
 
-export default function callApi(endpoint, method = "GET", body) {
-  if (!localStorage.getItem("account")) {
-    localStorage.setItem("account", JSON.stringify(""));
+_retrieveData = async () => {
+  try {
+    var account = await AsyncStorage.getItem("account");
+    if (account !== null) {
+      account = JSON.parse(account);
+      return account;
+    }
+    return account;
+  } catch (error) {
+    return null;
   }
-  let account = JSON.parse(localStorage.getItem("account"));
-  if (Object.keys(account).length === 0) {
+};
+
+export default async function callApi(endpoint, method = "GET", body) {
+  var account = await _retrieveData();
+  if (account === null) {
     return axios({
       method: method,
       url: `${Config.API_URL}/${endpoint}`,
