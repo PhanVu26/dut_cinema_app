@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Carousel from '../components/Carousel/Carousel';
 import Movies from '../components/Movies';
 import * as actions from '../actions/index'
+import MyTabs from '../components/Tab/MovieTab';
 
 export default function HomePage(props) {
     // const dispatch = useDispatch();
@@ -21,8 +22,9 @@ export default function HomePage(props) {
                 <Carousel></Carousel>
             </View>
             <View style={{ flex: 5, backgroundColor:333 }} >
-                <Text>In comming</Text>
-                <Movies navigation={props.navigation}></Movies>
+                <MyTabs></MyTabs>
+                {/* <Text>In comming</Text>
+                <Movies navigation={props.navigation}></Movies> */}
             </View>
         </View>
     )

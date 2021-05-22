@@ -1,14 +1,17 @@
+import React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import BookTicket from '../BookTicket'
+import Movies from '../Movies';
 
 const Tab = createMaterialTopTabNavigator();
 
-const MyTabs = () => {
+const MovieTab = () => {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Đang chiếu" component={Movies} />
+      <Tab.Screen name="Sắp chiếu" component={Movies} />
     </Tab.Navigator>
   );
 }
 
-export default MyTabs;
+export default MovieTab;
