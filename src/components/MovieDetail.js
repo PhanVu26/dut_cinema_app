@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 import Options from '../components/Option/Options';
-import { defaultStyles } from './styles';
+import { defaultStyles } from '../components/styles';
 
 // Get screen dimensions
 const { width, height } = Dimensions.get('window');

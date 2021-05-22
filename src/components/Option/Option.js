@@ -5,7 +5,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
-import { defaultStyles } from './styles';
+import { defaultStyles } from '../styles';
 
 // Colors for smooth transition when user chosess an option
 const colorDefault = 'rgba(255, 255, 255, 1)',  // white

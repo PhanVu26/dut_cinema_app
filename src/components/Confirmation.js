@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View
 } from 'react-native';
-import { defaultStyles } from './styles';
+import { defaultStyles } from '../components/styles';
 
 export default class Confirmation extends Component {
 

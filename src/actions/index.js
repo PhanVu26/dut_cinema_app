@@ -35,3 +35,21 @@ export const actFetchDataCinemas = (cinemas) => {
     cinemas,
   };
 };
+
+
+// get movies of cinema actions
+export const actFetchCinemaShowtimesRequest = (id) => {
+  return (dispatch) => {
+    return callApi(`cinemas/${id}/showtimes`, "GET", null).then((res) => {
+      //console.log("data", res.data.movies)
+      dispatch(actFetchCinemaShowtimes(res.data.movies));
+    });
+  };
+};
+  
+export const actFetchCinemaShowtimes = (cinemaShowtime) => {
+  return {
+    type: types.GET_CINEMA_SHOWTIMES,
+    cinemaShowtime,
+  };
+};

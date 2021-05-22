@@ -13,6 +13,7 @@ import Confirmation from './src/components/Confirmation';
 import BookTicket from "./src/components/BookTicket"
 import MovieDetail from './src/components/MovieDetail'
 import NavigationTab from './src/components/Tab/NavigationTab'
+import ListMovie from './src/screens/ListMovie';
 
 
 const store = createStore(rootReducer,applyMiddleware(thunk));
@@ -27,6 +28,7 @@ export default function App() {
         <Stack.Screen name="BookTicket" component={BookTicket} />
         <Stack.Screen name="MovieDetail" component={MovieDetail} />
         <Stack.Screen name="Confirmation" component={Confirmation} />
+        <Stack.Screen name="ListMovie" component={ListMovie} />
       </Stack.Navigator>
       </NavigationContainer>
     </Provider>
