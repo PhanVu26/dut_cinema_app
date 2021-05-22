@@ -7,9 +7,10 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import MoviePoster from './MoviePoster';
-import MoviePopup from './MoviePopup';
+import MoviePoster from '../components/Poster/MoviePoster';
+import MoviePopup from '../components/Popup/MoviePopup';
 import Confirmation from './Confirmation';
+import * as actions from '../actions/index'
 
 // @connect(
 //   state => ({
@@ -28,7 +29,7 @@ class Movies extends Component {
     super(props)
   }
   componentDidMount() {
-    this.props.refresh();
+    this.props.getMovies();
     const willFocusSubscription = this.props.navigation.addListener(
       'focus',
       () => {
@@ -44,9 +45,9 @@ class Movies extends Component {
     // Time chosen by user
     chosenTime: null,
   }
-  openMovie = async (movie) => {
-    await this.props.getCinemas();
-    await this.props.getShowtime(movie);
+  openMovie = (movie) => {
+    this.props.getCinemas();
+    this.props.getShowtime(movie);
     console.log(this.props.movieShowtime)
     //this.props.navigation.navigate("MovieDetail")
     this.setState({
@@ -95,9 +96,9 @@ class Movies extends Component {
 
   render() {
     const { movies, loading, refresh, navigation } = this.props;
-    console.log("movie hhhh", movies)
+    //console.log("movie hhhh", movies)
     //console.log("showtime hhhh", this.props.movieShowtime )
-    console.log("cinemas: ", this.props.cinemas)
+    //console.log("cinemas: ", this.props.cinemas)
     return (
       <View style={styles.container}>
         {movies
@@ -174,7 +175,10 @@ const mapDispatchToProps = (dispatch, props) =>{
     refresh: () => dispatch({type: 'GET_MOVIE_DATA'}),
     getShowtime : (movie) => dispatch({type: 'GET_SHOWTIME_DATA', payload: movie}),
     getCinemas : () => {
-      dispatch({type: "GET_CINEMA_DATA"})
+      dispatch(actions.actFetchDataCinemasRequest())
+    },
+    getMovies: () => {
+      dispatch(actions.actFetchDataMoviesRequest())
     }
   }
 }

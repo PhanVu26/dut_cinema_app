@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
-import Options from './Options';
+import Options from '../components/Option/Options';
 import { defaultStyles } from './styles';
 
 // Get screen dimensions

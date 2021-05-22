@@ -12,8 +12,8 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
-import Options from './Options';
-import { defaultStyles } from './styles';
+import Options from '../Option/Options';
+import { defaultStyles } from '../styles';
 
 // Get screen dimensions
 const { width, height } = Dimensions.get('window');
@@ -222,7 +222,7 @@ class MoviePopup extends Component {
       onChooseTime,
       onBook
     } = this.props;
-    console.log("cinemas props", this.props.cinemas)
+    //console.log("cinemas props", this.props.cinemas)
     // Pull out movie data
     const { name, country, description, duration } = movie || {};
     const {showtimes} = movieShowtime || {};

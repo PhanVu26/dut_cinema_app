@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {StyleSheet} from 'react-native'
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
+import * as actions from '../actions/index';
 class Cinema extends Component {
     constructor(props){
       
@@ -54,7 +55,7 @@ class Cinema extends Component {
     }
   render() {
     const cinemas = this.props.cinemas;
-    console.log("qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", cinemas)
+    //console.log("qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", cinemas)
     return (
       <Container>
         <Content>
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   const mapDispatchToProps = (dispatch, props) =>{
     return {
       getCinemas : () => {
-        dispatch({type: "GET_CINEMA_DATA"})
+        dispatch(actions.actFetchDataCinemasRequest())
       }
     }
   }

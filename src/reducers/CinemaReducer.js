@@ -3,10 +3,10 @@ var initialState = []
 
 const myReducer = (state = initialState, action) => {
     switch(action.type){
-        case types.GET_MOVIE_DATA:
+        case types.GET_CINEMA_DATA:
             var newState = [...state];
-            if(action.movies){
-                newState = action.movies
+            if(action.cinemas){
+                newState = action.cinemas
             }
             return newState;       
         default: return state;     
