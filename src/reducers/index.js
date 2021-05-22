@@ -79,13 +79,13 @@ export const reducer = (state = initialState, action) => {
         loading: true                   // but change loading to true
       };
 
-    case 'GET_MOVIE_DATA_RECIEVED':
-        console.log('data1', action.data)
-      return {
-        loading: false,                 // set loading to false
-        movies: action.data.results      // update movies array with response data
-      };
-
+    case 'GET_MOVIE_DATA_RECIEVED': {
+        // console.log('data1', action.data)
+      let newState = { ...state };
+      newState.movies = action.data.results;
+      newState.loading = false;
+      return newState;
+    }
     case 'GET_MOVIE_DATA_ERROR':
       return state;
 
@@ -96,7 +96,6 @@ export const reducer = (state = initialState, action) => {
       };
 
     case 'GET_SHOWTIME_DATA_RECIEVED':
-        console.log('data2', action.data)
       return {
         loading: false,                 // set loading to false
         movieShowtime: action.data      // update movies array with response data
@@ -111,13 +110,12 @@ export const reducer = (state = initialState, action) => {
           loading: true                   // but change loading to true
         };
   
-      case 'GET_THEATER_DATA_RECIEVED':
-          console.log('data2', action.data)
-        return {
-          loading: false,                 // set loading to false
-          theater: action.data     // update movies array with response data
-        };
-  
+      case 'GET_THEATER_DATA_RECIEVED':{
+        let newState = { ...state };
+        newState.theater = action.data.results;
+        newState.loading = false;
+        return newState;
+      }
       case 'GET_THEATER_DATA_ERROR':
         return state;
   
