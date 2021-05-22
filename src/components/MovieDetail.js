@@ -223,7 +223,7 @@ export default class MoviePopup extends Component {
     // Pull out movie data
     const { name, country, description, duration } = movie || {};
     const {showtimes} = movieShowtime || {};
-    console.log("showtime inpopo", movieShowtime)
+    // console.log("showtime inpopo", movieShowtime)
     const days = showtimes?.map(sh => {
       return sh.startTime.split('T')[0]
     })

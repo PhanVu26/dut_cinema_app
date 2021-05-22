@@ -26,6 +26,8 @@ import TempScreen from "./src/screens/TempScreen";
 
 // Fetch movie data
 // store.dispatch({ type: "GET_MOVIE_DATA" });
+// store.dispatch({type: 'GET_MOVIE_DATA'});
+// store.dispatch({type: 'GET_THEATER_DATA'});
 
 import HomePage from "./src/screens/HomePage";
 import Cinema from "./src/components/Cinema";
@@ -101,7 +103,7 @@ function MyTabs() {
         options={{
           tabBarLabel: "Đặt vé",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bell" color={color} size={size} />
+            <MaterialCommunityIcons name="glasses" color={color} size={size} />
           ),
         }}
       />

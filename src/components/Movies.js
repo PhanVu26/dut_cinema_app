@@ -29,6 +29,7 @@ class Movies extends Component {
   }
   componentDidMount() {
     this.props.refresh();
+    this.props.fetchTheaterData();
     const willFocusSubscription = this.props.navigation.addListener(
       'focus',
       () => {
@@ -46,7 +47,7 @@ class Movies extends Component {
   }
   openMovie = async (movie) => {
     await this.props.getShowtime(movie);
-    console.log(this.props.movieShowtime)
+    //console.log(this.props.movieShowtime)
     //this.props.navigation.navigate("MovieDetail")
     this.setState({
       popupIsOpen: true,
@@ -94,8 +95,8 @@ class Movies extends Component {
 
   render() {
     const { movies, loading, refresh, navigation } = this.props;
-    console.log("movie hhhh", movies)
-    console.log("showtime hhhh", this.props.movieShowtime )
+    // console.log("movie hhhh", movies)
+    // console.log("showtime hhhh", this.props.movieShowtime )
     return (
       <View style={styles.container}>
         {movies
@@ -161,14 +162,16 @@ const mapStateToProps = (state) => {
   return {
     movies: state.movies,
     loading: state.loading,
-    movieShowtime: state.movieShowtime
+    movieShowtime: state.movieShowtime,
+    theater: state.theater
   }
 }
 
 const mapDispatchToProps = (dispatch, props) =>{
   return {
     refresh: () => dispatch({type: 'GET_MOVIE_DATA'}),
-    getShowtime : (movie) => dispatch({type: 'GET_SHOWTIME_DATA', payload: movie})
+    getShowtime : (movie) => dispatch({type: 'GET_SHOWTIME_DATA', payload: movie}),
+    fetchTheaterData : () => dispatch({type: 'GET_THEATER_DATA'})
   }
 }
 
