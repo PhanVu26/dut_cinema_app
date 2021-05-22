@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import {
   Animated,
   Dimensions,
@@ -19,7 +20,7 @@ const { width, height } = Dimensions.get('window');
 // Set default popup height to 67% of screen height
 const defaultHeight = height * 0.67;
 
-export default class MoviePopup extends Component {
+class MoviePopup extends Component {
 
   // static propTypes = {
 	// isOpen: PropTypes.bool.isRequired,
@@ -57,6 +58,7 @@ export default class MoviePopup extends Component {
   _previousHeight = 0
 
   componentWillMount() {
+    this.props.getCinems()
     // Initialize PanResponder to handle move gestures
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
@@ -220,12 +222,13 @@ export default class MoviePopup extends Component {
       onChooseTime,
       onBook
     } = this.props;
+    console.log("cinemas props", this.props.cinemas)
     // Pull out movie data
     const { name, country, description, duration } = movie || {};
     const {showtimes} = movieShowtime || {};
-    console.log("showtime inpopo", movieShowtime)
-    const days = showtimes?.map(sh => {
-      return sh.startTime.split('T')[0]
+    //console.log("showtime inpopo", movieShowtime)
+    const days = this.props.cinemas?.map(c => {
+      return c.name
     })
     const times = showtimes?.map(sh => {
       return sh.startTime.split('T')[1].slice(0,5)
@@ -307,6 +310,21 @@ export default class MoviePopup extends Component {
   }
 
 }
+
+const mapStateToProps = (state) => {
+  return {
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) =>{
+  return {
+    getCinems : () => {
+      dispatch({type: "GET_CINEMA_DATA"})
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePopup);
 
 const styles = StyleSheet.create({
   // Main container

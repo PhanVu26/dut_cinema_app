@@ -24,6 +24,7 @@ const store = createStore(reducer, {}, applyMiddleware(apiMiddleware));
 
 // Fetch movie data
 store.dispatch({type: 'GET_MOVIE_DATA'});
+store.dispatch({type: 'GET_CINEMA_DATA'});
 
 
 import HomePage from "./src/screens/HomePage"

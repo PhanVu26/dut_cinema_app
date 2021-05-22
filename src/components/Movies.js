@@ -45,6 +45,7 @@ class Movies extends Component {
     chosenTime: null,
   }
   openMovie = async (movie) => {
+    await this.props.getCinemas();
     await this.props.getShowtime(movie);
     console.log(this.props.movieShowtime)
     //this.props.navigation.navigate("MovieDetail")
@@ -95,7 +96,8 @@ class Movies extends Component {
   render() {
     const { movies, loading, refresh, navigation } = this.props;
     console.log("movie hhhh", movies)
-    console.log("showtime hhhh", this.props.movieShowtime )
+    //console.log("showtime hhhh", this.props.movieShowtime )
+    console.log("cinemas: ", this.props.cinemas)
     return (
       <View style={styles.container}>
         {movies
@@ -125,6 +127,7 @@ class Movies extends Component {
             />
         }
         <MoviePopup
+          cinemas = {this.props.cinemas}
           movieShowtime = {this.props.movieShowtime}
           movie={this.state.movie}
           isOpen={this.state.popupIsOpen}
@@ -161,14 +164,18 @@ const mapStateToProps = (state) => {
   return {
     movies: state.movies,
     loading: state.loading,
-    movieShowtime: state.movieShowtime
+    movieShowtime: state.movieShowtime,
+    cinemas: state.cinemas
   }
 }
 
 const mapDispatchToProps = (dispatch, props) =>{
   return {
     refresh: () => dispatch({type: 'GET_MOVIE_DATA'}),
-    getShowtime : (movie) => dispatch({type: 'GET_SHOWTIME_DATA', payload: movie})
+    getShowtime : (movie) => dispatch({type: 'GET_SHOWTIME_DATA', payload: movie}),
+    getCinemas : () => {
+      dispatch({type: "GET_CINEMA_DATA"})
+    }
   }
 }
 
