@@ -37,7 +37,7 @@ class AuthScreen extends Component {
       >
         <View style={{ ...StyleSheet.absoluteFill }}>
           <Image
-            source={require("../../assets/bg3.jpg")}
+            source={require("../../assets/bg4.jpg")}
             style={{ flex: 1, height: null, width: null }}
           />
         </View>

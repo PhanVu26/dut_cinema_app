@@ -5,6 +5,7 @@ import HomePage from '../../screens/HomePage';
 import Profile from '../../screens/Profile';
 import Cinema from '../../screens/Cinema';
 import TempScreen from '../../screens/TempScreen';
+import AuthScreen from '../../screens/AuthScreen';
 const NavigationTab = () => {
     const Tab = createBottomTabNavigator();
     return (
@@ -36,9 +37,9 @@ const NavigationTab = () => {
         />
         <Tab.Screen
           name="Profile"
-          component={TempScreen}
+          component={AuthScreen}
           options={{
-            tabBarLabel: 'Cá nhân',
+            tabBarLabel: 'Tài khoản',
             tabBarIcon: ({ color, size }) => (
               <MaterialCommunityIcons name="account" color={color} size={size} />
             ),

@@ -36,7 +36,7 @@ export default function App() {
           <Stack.Screen name="Confirmation" component={Confirmation} />
           <Stack.Screen name="ListMovie" component={ListMovie} />
           {/* <Stack.Screen name="Temp" component={TempScreen} /> */}
-          <Stack.Screen name="Auth" component={AuthScreen} />
+          {/* <Stack.Screen name="Auth" component={AuthScreen} /> */}
           <Stack.Screen name="Login" component={LoginScreen} />
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="LogOut" component={LogOutScreen} />
