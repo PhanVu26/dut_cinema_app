@@ -14,6 +14,7 @@ import BookTicket from "./src/components/BookTicket"
 import MovieDetail from './src/components/MovieDetail'
 import NavigationTab from './src/components/Tab/NavigationTab'
 import ListMovie from './src/screens/ListMovie';
+import SeatPicker from './src/screens/SeatPicker';
 
 
 import LogOutScreen from "./src/screens/LogOutScreen";
@@ -35,6 +36,7 @@ export default function App() {
           <Stack.Screen name="MovieDetail" component={MovieDetail} />
           <Stack.Screen name="Confirmation" component={Confirmation} />
           <Stack.Screen name="ListMovie" component={ListMovie} />
+          <Stack.Screen name="SeatPicker" component={SeatPicker} />
           {/* <Stack.Screen name="Temp" component={TempScreen} /> */}
           {/* <Stack.Screen name="Auth" component={AuthScreen} /> */}
           <Stack.Screen name="Login" component={LoginScreen} />
