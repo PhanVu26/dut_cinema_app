@@ -40,7 +40,6 @@ Array(ROWS * COLS).join(' ').split(' ').map((_, i) => {
 export default class SeatPicker extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       finished: false,
       selectedItems: []

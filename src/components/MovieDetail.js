@@ -4,10 +4,10 @@ const users = [
      avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
   },
  ]
- import React from 'react'
- import { View, Text, Image, ScrollView } from 'react-native'
- import { Card, ListItem, Button, Icon } from 'react-native-elements'
- import MovieDetailTab from '../components/Tab/MovieDetailTab'
+import React from 'react'
+import { View, Text, Image, ScrollView } from 'react-native'
+import { Card, ListItem, Button, Icon } from 'react-native-elements'
+import MovieDetailTab from '../components/Tab/MovieDetailTab'
 import MovieTab from './Tab/MovieTab'
  
 export default  MovieDetail = (props) =>{
