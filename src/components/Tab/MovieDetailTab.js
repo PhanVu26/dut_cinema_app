@@ -9,11 +9,12 @@ import Showtime from '../RowBlock/Showtime';
 
 const Tab = createMaterialTopTabNavigator();
 
-const MovieDetailTab = () => {
+const MovieDetailTab = (props) => {
+  const {movie, cinemas } = props;
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Lịch chiếu" component={Showtime} />
-      <Tab.Screen name="Thông tin" component={MovieCard} />
+      <Tab.Screen name="Lịch chiếu" component={Showtime} initialParams ={{movie: movie}}/>
+      <Tab.Screen name="Thông tin" component={MovieCard} initialParams ={{movie: movie}} />
     </Tab.Navigator>
   );
 }

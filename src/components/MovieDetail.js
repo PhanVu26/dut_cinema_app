@@ -36,7 +36,7 @@ export default  MovieDetail = (props) =>{
         </Text>
       </Card>
       {showCinemas(cinemas)} */}
-      <MovieDetailTab></MovieDetailTab>
+      <MovieDetailTab movie={movie} cinemas={cinemas}></MovieDetailTab>
     </ScrollView>
  
 
