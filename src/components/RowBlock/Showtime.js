@@ -1,47 +1,54 @@
 import React, { Component, PropTypes } from 'react';
 import { StyleSheet, Text, TouchableHighlight, View } from 'react-native';
 import { connect } from 'react-redux';
+import ShowtimeCard from '../Card/ShowtimeCard';
 
 import { defaultStyles } from '../styles';
 import ShowtimeBlock from "./ShowtimeBlock"
 
 class Showtime extends Component {
-
+  constructor(props){
+    super(props)
+  }
 
   render() {
       const days = ["Cinema 1","Cinema 2"]; 
       const times = ["10:22","20:00", "21:00"]; 
+    const {movie, cinemas} = this.props.route.params;
     return (
-      <View>
-            {/* Showduration */}
-            <View>
-              {/* Day */}
-              <Text style={styles.sectionHeader}>Cinema</Text>
-              <ShowtimeBlock
-                values = {days}
-                // chosen = {chosenDay}
-                // onChoose = {onChooseDay}
-              />
-              {/* Time */}
-              <Text style={styles.sectionHeader}>Showtime</Text>
-              <ShowtimeBlock
-                values = {times}
-                // chosen = {chosenTime}
-                // onChoose = {onChooseTime}
-              />
-            </View>
+      // <View>
+      //       {/* Showduration */}
+      //       <View>
+      //         {/* Day */}
+      //         <Text style={styles.sectionHeader}>Cinema</Text>
+      //         <ShowtimeBlock
+      //           values = {days}
+      //           // chosen = {chosenDay}
+      //           // onChoose = {onChooseDay}
+      //         />
+      //         {/* Time */}
+      //         <Text style={styles.sectionHeader}>Showtime</Text>
+      //         <ShowtimeBlock
+      //           values = {times}
+      //           // chosen = {chosenTime}
+      //           // onChoose = {onChooseTime}
+      //         />
+      //       </View>
 
-          {/* Book ticket */}
-          <View style={styles.footer}>
-            <TouchableHighlight
-              underlayColor="#9575CD"
-              style={styles.buttonContainer}
-            //   onPress={onBook}
-            >
-              <Text style={styles.button}>Book My Tickets</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
+      //     {/* Book ticket */}
+      //     <View style={styles.footer}>
+      //       <TouchableHighlight
+      //         underlayColor="#9575CD"
+      //         style={styles.buttonContainer}
+      //       //   onPress={onBook}
+      //       >
+      //         <Text style={styles.button}>Book My Tickets</Text>
+      //       </TouchableHighlight>
+      //     </View>
+      //   </View>
+      <View>
+        <ShowtimeCard movie={movie} cinemas={cinemas}></ShowtimeCard>
+      </View>
     );
   }
 

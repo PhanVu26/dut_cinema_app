@@ -13,7 +13,7 @@ const MovieDetailTab = (props) => {
   const {movie, cinemas } = props;
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Lịch chiếu" component={Showtime} initialParams ={{movie: movie}}/>
+      <Tab.Screen name="Lịch chiếu" component={Showtime} initialParams ={{movie: movie, cinemas: cinemas}}/>
       <Tab.Screen name="Thông tin" component={MovieCard} initialParams ={{movie: movie}} />
     </Tab.Navigator>
   );
