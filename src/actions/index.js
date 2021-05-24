@@ -53,6 +53,24 @@ export const actFetchCinemaShowtimes = (cinemaShowtime) => {
     cinemaShowtime,
   };
 };
+
+export const actFetchDataBookingMovieRequest = (showtimeId) => {
+  return (dispatch) => {
+    return callApi(`showtimes/${showtimeId}/tickets`, "GET", null).then(
+      (res) => {
+        dispatch(actFetchDataBookingMovie(res.data));
+      }
+    );
+  };
+};
+
+export const actFetchDataBookingMovie = (booking) => {
+  return {
+    type: Types.GET_BOOKING_SHOWTIME,
+    booking,
+  };
+};
+
 export const actLogin = (user) => {
   return {
     type: types.GET_USER_DATA,

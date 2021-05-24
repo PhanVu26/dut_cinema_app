@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import {
-  Easing,
-  TouchableOpacity,
-  Animated,
-  Dimensions,
-  FlatList,
-  Text,
-  View,
-  StyleSheet,
-  Alert
-} from 'react-native';
+import { connect } from 'react-redux';
+import { Easing, TouchableOpacity, Animated, Dimensions, FlatList, Text, View, StyleSheet} from 'react-native';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { Card } from 'react-native-elements'
 import  Constants  from 'expo-constants';
+import * as actions from '../actions/index';
 const { width, height } = Dimensions.get('window');
 
-const ROWS = 6;
-const COLS = 5;
+const ROWS = 3;
+const COLS = 10;
 const TIMING = 600;
 const TEXT_HEIGHT = 20;
 let seats = [];
@@ -28,7 +21,8 @@ for (var i = 0; i < ROWS + COLS - 1; i++) {
 Array(ROWS * COLS).join(' ').split(' ').map((_, i) => {
   const currentIndex = i % COLS + Math.floor(i / COLS) % ROWS;
   const currentItem = {
-    label: i + 1 < 10 ? '0' + (i + 1) : i + 1,
+    //String.fromCharCode(index + 65)
+    label: (i + 1) % 10 == 0 ? String.fromCharCode((i + 1) / 10 + 64) + 10 : String.fromCharCode((i + 1) / 10 + 65) + (i + 1)%10,
     s: currentIndex,
     key: i,
     animated: new Animated.Value(1)
@@ -37,7 +31,7 @@ Array(ROWS * COLS).join(' ').split(' ').map((_, i) => {
   seats.push(currentItem);
 });
 
-export default class SeatPicker extends Component {
+class SeatPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -52,7 +46,11 @@ export default class SeatPicker extends Component {
       this.animatedValue[value] = new Animated.Value(0);
     });
   }
-
+  componentDidMount(){
+    const {showtimeId} = this.props.route.params;
+    console.log("showtimeId: ",showtimeId);
+    this.props.getBooking(showtimeId);
+}
   animate = () => {
     const animations = seatsAnimation.map(item => {
       return Animated.timing(this.animatedValue[item], {
@@ -119,7 +117,7 @@ export default class SeatPicker extends Component {
           );
         }}
         style={{
-          opacity: 1 - parseInt(item.s) / 15
+          opacity: 0.9
         }}>
         <Animated.View
           style={{
@@ -153,6 +151,7 @@ export default class SeatPicker extends Component {
   };
 
   render() {
+    console.log("asdfggsa",this.props.booking)
     return (
       <View style={styles.container}>
         <View
@@ -163,12 +162,12 @@ export default class SeatPicker extends Component {
             justifyContent: 'space-between',
             flexDirection: 'row'
           }}>
-          <SimpleLineIcons
+          {/* <SimpleLineIcons
             name="menu"
             size={22}
             color="#666"
             style={{ paddingLeft: 12 }}
-          />
+          /> */}
           <Text style={{ fontSize: 14, fontWeight: '700', color: '#333' }}>
             Select Seats
           </Text>
@@ -187,6 +186,33 @@ export default class SeatPicker extends Component {
           style={{ flex: 0.8 }}
           renderItem={this.renderItem}
         />
+        <Animated.View
+          style={{
+            transform: [
+              {
+                scale: seats[0].animated
+              }
+            ]
+          }}>
+          <Animated.View
+            style={[
+              {
+                backgroundColor: '#3493FF',opacity: 0.9
+              },
+              styles.item,
+              {
+                transform: [
+                  {
+                    scale: seats[0].animated
+                  }
+                ]
+              }
+            ]}>
+          </Animated.View>
+          <Text style={styles.text}>
+            Ghế có thể chọn
+          </Text>
+        </Animated.View>
         <View
           style={{
             alignItems: 'center',
@@ -248,8 +274,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ecf0f1'
   },
   item: {
-    width: width / COLS,
-    height: width / COLS,
+    width: width / COLS /1.07,
+    height: width / COLS /1.07,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -259,3 +285,19 @@ const styles = StyleSheet.create({
   },
   text: { fontSize: 15, fontWeight: '500' }
 });
+
+const mapStateToProps = (state) => {
+  return {
+      booking: state.booking,
+  }
+}
+
+const mapDispatchToProps = (dispatch, props) =>{
+  return {
+      getBooking : (id) => {
+      dispatch(actions.actFetchDataBookingMovieRequest(id))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SeatPicker); 

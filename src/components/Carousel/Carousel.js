@@ -61,7 +61,7 @@ export default class App extends React.Component {
             <Carousel
               sliderWidth={screenWidth}
               sliderHeight={screenWidth}
-              itemWidth={screenWidth - 60}
+              itemWidth={screenWidth - 20}
               data={this.state.entries}
               renderItem={this._renderItem}
               hasParallaxImages={true}

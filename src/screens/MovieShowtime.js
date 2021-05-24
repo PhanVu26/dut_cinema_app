@@ -46,7 +46,9 @@ class MovieShowtime extends Component{
             return(
             <View style={{ flex: 1, marginLeft: index===0 ? 0 : 10 }} >
                 <Button
-                    title={item.time}
+                    title={item.time} onPress = {()=> {this.props.navigation.navigate('SeatPicker',{
+                      showtimeId: item.id
+                    })}}
                    />
             </View>)
         })
