@@ -184,7 +184,7 @@ class SeatPicker extends Component {
     bookedSeats = this.seatsDisabled(movieBooking,"Booked");
     reservedSeats = this.seatsDisabled(movieBooking,"Sold");
     holdSeats = this.seatsDisabled(movieBooking,"Hold");
-    console.log("Booked seats: ",bookedSeats)
+    console.log("Booked seats: ",movieBooking)
     return (
       <View style={styles.container}>
         <View
