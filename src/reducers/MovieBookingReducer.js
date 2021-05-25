@@ -4,14 +4,13 @@ var initialState = []
 const myReducer = (state = initialState, action) => {
     switch(action.type){
         case types.GET_BOOKING_SHOWTIME:
-            var newState = [...state];
+            var newState = [];
             if(action.booking){
                 newState = action.booking
             }
-            return newState;       
+            return newState;
         default: return state;     
     }
-    return state;
 }
 
 

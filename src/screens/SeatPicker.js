@@ -13,6 +13,9 @@ const TIMING = 600;
 const TEXT_HEIGHT = 20;
 let seats = [];
 let seatsAnimation = [];
+let bookedSeats = [];
+let reservedSeats = [];
+let holdSeats = [];
 
 for (var i = 0; i < ROWS + COLS - 1; i++) {
   seatsAnimation.push(i);
@@ -21,7 +24,6 @@ for (var i = 0; i < ROWS + COLS - 1; i++) {
 Array(ROWS * COLS).join(' ').split(' ').map((_, i) => {
   const currentIndex = i % COLS + Math.floor(i / COLS) % ROWS;
   const currentItem = {
-    //String.fromCharCode(index + 65)
     label: (i + 1) % 10 == 0 ? String.fromCharCode((i + 1) / 10 + 64) + 10 : String.fromCharCode((i + 1) / 10 + 65) + (i + 1)%10,
     s: currentIndex,
     key: i,
@@ -48,9 +50,8 @@ class SeatPicker extends Component {
   }
   componentDidMount(){
     const {showtimeId} = this.props.route.params;
-    console.log("showtimeId: ",showtimeId);
     this.props.getBooking(showtimeId);
-}
+  }
   animate = () => {
     const animations = seatsAnimation.map(item => {
       return Animated.timing(this.animatedValue[item], {
@@ -75,6 +76,29 @@ class SeatPicker extends Component {
     });
   };
 
+  seatsDisabled = (bookings,type) => {
+    var num_seat = 30;
+    let dataSeats = [];
+    if(bookings.tickets!==undefined){
+      for (let i = 0; i < num_seat; i++) {
+        if ( bookings.tickets[i].status === type) {
+          dataSeats.push(bookings.tickets[i].seat);
+        }
+      }
+    }
+    let seats = [];
+    if (dataSeats.length > 0) {
+      for (let z = 0; z < dataSeats.length; z++) {
+        let checkRow = dataSeats[z].row;
+        let checkColumn = dataSeats[z].column;
+
+        let checkSeat = checkRow+checkColumn;
+        seats.push(checkSeat);
+      }
+  	}
+	  return seats;
+  };
+  
   renderItem = ({ item }) => {
     const i = item.key;
     const scale = this.animatedValue[item.s].interpolate({
@@ -82,7 +106,7 @@ class SeatPicker extends Component {
       outputRange: [1, 0, 1]
     });
     const { selectedItems } = this.state;
-    const isSelected = selectedItems.includes(item.key);
+    const isSelected = selectedItems.includes(item.label);
     const itemPressScale = item.animated.interpolate({
       inputRange: [0, 0.5, 1],
       outputRange: [1, 0, 1]
@@ -91,10 +115,12 @@ class SeatPicker extends Component {
     return (
       <TouchableOpacity
         activeOpacity={0.5}
+        disabled = {bookedSeats.includes(item.label)||reservedSeats.includes(item.label)||holdSeats.includes(item.label)?true:false}
         onPress={() => {
           const selected = isSelected
-            ? selectedItems.filter(i => i !== item.key)
-            : [...selectedItems, item.key];
+            ? selectedItems.filter(i => i !== item.label)
+            : [...selectedItems, item.label];
+
 
           item.animated.setValue(0);
           this.setState(
@@ -130,7 +156,10 @@ class SeatPicker extends Component {
           <Animated.View
             style={[
               {
-                backgroundColor: isSelected ? '#8EF0E7' : '#3493FF'
+                backgroundColor: bookedSeats.includes(item.label)? '#ffbb42' : 
+                                    (reservedSeats.includes(item.label)?'#d26a74':
+                                        (holdSeats.includes(item.label)?'8dafc1':
+                                            (isSelected ? '#8EF0E7' : '#3493FF')))
               },
               styles.item,
               {
@@ -151,7 +180,11 @@ class SeatPicker extends Component {
   };
 
   render() {
-    console.log("asdfggsa",this.props.booking)
+    let movieBooking = this.props.booking;
+    bookedSeats = this.seatsDisabled(movieBooking,"Booked");
+    reservedSeats = this.seatsDisabled(movieBooking,"Sold");
+    holdSeats = this.seatsDisabled(movieBooking,"Hold");
+    console.log("Booked seats: ",movieBooking)
     return (
       <View style={styles.container}>
         <View
@@ -168,7 +201,7 @@ class SeatPicker extends Component {
             color="#666"
             style={{ paddingLeft: 12 }}
           /> */}
-          <Text style={{ fontSize: 14, fontWeight: '700', color: '#333' }}>
+          <Text style={{ fontSize: 14, paddingLeft: 20, fontWeight: '700', color: '#333' }}>
             Select Seats
           </Text>
           <SimpleLineIcons.Button
