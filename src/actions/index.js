@@ -66,7 +66,7 @@ export const actFetchDataBookingMovieRequest = (showtimeId) => {
 
 export const actFetchDataBookingMovie = (booking) => {
   return {
-    type: Types.GET_BOOKING_SHOWTIME,
+    type: types.GET_BOOKING_SHOWTIME,
     booking,
   };
 };

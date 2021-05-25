@@ -8,10 +8,9 @@ const myReducer = (state = initialState, action) => {
             if(action.booking){
                 newState = action.booking
             }
-            return newState;       
+            return newState;
         default: return state;     
     }
-    return state;
 }
 
 
