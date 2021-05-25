@@ -34,8 +34,8 @@ class ListMovie extends Component {
                 </Body>
                 <Right>
                   <Button transparent
-                    onPress = {()=> {this.props.navigation.navigate('MovieBooking',{
-                      movie: item
+                    onPress = {()=> {this.props.navigation.navigate('TicketPicker',{
+                      movie: item,
                     })}}
                    >
                     <Text>View</Text>
