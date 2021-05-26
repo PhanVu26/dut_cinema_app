@@ -5,6 +5,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-elements'
 import  Constants  from 'expo-constants';
 import * as actions from '../actions/index';
+import { CheckBox,Button,Left, Body, Right,Thumbnail,ListItem } from 'native-base';
 const { width, height } = Dimensions.get('window');
 
 const ROWS = 3;
@@ -158,7 +159,7 @@ class SeatPicker extends Component {
               {
                 backgroundColor: bookedSeats.includes(item.label)? '#ffbb42' : 
                                     (reservedSeats.includes(item.label)?'#d26a74':
-                                        (holdSeats.includes(item.label)?'8dafc1':
+                                        (holdSeats.includes(item.label)?'#8dafc1':
                                             (isSelected ? '#8EF0E7' : '#3493FF')))
               },
               styles.item,
@@ -219,33 +220,128 @@ class SeatPicker extends Component {
           style={{ flex: 0.8 }}
           renderItem={this.renderItem}
         />
-        <Animated.View
+        <View
           style={{
-            transform: [
-              {
-                scale: seats[0].animated
-              }
-            ]
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            flex: 0.2
           }}>
-          <Animated.View
-            style={[
-              {
-                backgroundColor: '#3493FF',opacity: 0.9
-              },
-              styles.item,
-              {
-                transform: [
-                  {
-                    scale: seats[0].animated
-                  }
-                ]
-              }
-            ]}>
-          </Animated.View>
+          <View
+            style={{
+              height: TEXT_HEIGHT,
+              overflow: 'hidden',
+              backgroundColor: 'transparent'
+            }}>
+            <Animated.View
+              style={[
+                {
+                  backgroundColor: '#ffbb42',opacity: 0.9,
+                },
+                {
+                  width: width / COLS /1.8,
+                  height: width / COLS /1.8,
+                },
+              ]}>
+            </Animated.View>
+          </View>
+          <Text style={styles.text}>
+            Ghế đã đặt
+          </Text>
+          <View
+            style={{
+              height: TEXT_HEIGHT,
+              overflow: 'hidden',
+              backgroundColor: 'transparent',paddingLeft: 20
+            }}>
+            <Animated.View
+              style={[
+                {
+                  backgroundColor: '#8dafc1',opacity: 0.9,
+                },
+                {
+                  width: width / COLS /1.8,
+                  height: width / COLS /1.8,
+                },
+              ]}>
+            </Animated.View>
+          </View>
+          <Text style={styles.text}>
+            Ghế đang giữ
+          </Text>
+          <View
+            style={{
+              height: TEXT_HEIGHT,
+              overflow: 'hidden',
+              backgroundColor: 'transparent',paddingLeft: 20
+            }}>
+            <Animated.View
+              style={[
+                {
+                  backgroundColor: '#d26a74',opacity: 0.9,
+                },
+                {
+                  width: width / COLS /1.8,
+                  height: width / COLS /1.8,
+                },
+              ]}>
+            </Animated.View>
+          </View>
+          
+          <Text style={styles.text}>
+            Ghế đã mua
+          </Text>
+        </View>
+        <View
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row',
+            flex: 0.2
+          }}>
+          <View
+            style={{
+              height: TEXT_HEIGHT,
+              overflow: 'hidden',
+              backgroundColor: 'transparent',paddingLeft: 20
+            }}>
+            <Animated.View
+              style={[
+                {
+                  backgroundColor: '#8EF0E7',opacity: 0.9,
+                },
+                {
+                  width: width / COLS /1.8,
+                  height: width / COLS /1.8,
+                },
+              ]}>
+            </Animated.View>
+          </View>
+          <Text style={styles.text}>
+            Ghế đang chọn
+          </Text>
+          <View
+            style={{
+              height: TEXT_HEIGHT,
+              overflow: 'hidden',
+              backgroundColor: 'transparent',paddingLeft: 20
+            }}>
+            <Animated.View
+              style={[
+                {
+                  backgroundColor: '#3493FF',opacity: 0.9,
+                },
+                {
+                  width: width / COLS /1.8,
+                  height: width / COLS /1.8,
+                },
+              ]}>
+            </Animated.View>
+          </View>
           <Text style={styles.text}>
             Ghế có thể chọn
           </Text>
-        </Animated.View>
+        </View>
         <View
           style={{
             alignItems: 'center',

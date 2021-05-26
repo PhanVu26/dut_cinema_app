@@ -42,7 +42,7 @@ class Cinema extends Component {
                   <Text note numberOfLines={1}>{item.address}</Text>
                 </Body>
                 <Right>
-                  <Button transparent
+                  <Button
                     onPress = {()=> {this.props.navigation.navigate('ListMovie',{
                       id: item.id
                     })}}

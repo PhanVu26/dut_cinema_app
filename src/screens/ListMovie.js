@@ -33,8 +33,8 @@ class ListMovie extends Component {
                   <Text note numberOfLines={1}>{item.producer}</Text>
                 </Body>
                 <Right>
-                  <Button transparent
-                    onPress = {()=> {this.props.navigation.navigate('TicketPicker',{
+                  <Button
+                    onPress = {()=> {this.props.navigation.navigate('MovieShowtime',{
                       movie: item,
                     })}}
                    >
