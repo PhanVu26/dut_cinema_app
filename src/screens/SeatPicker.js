@@ -6,6 +6,7 @@ import { Card } from 'react-native-elements'
 import  Constants  from 'expo-constants';
 import * as actions from '../actions/index';
 import { CheckBox,Button,Left, Body, Right,Thumbnail,ListItem } from 'native-base';
+import { Svg, Path } from 'react-native-svg';
 const { width, height } = Dimensions.get('window');
 
 const ROWS = 3;
@@ -196,12 +197,6 @@ class SeatPicker extends Component {
             justifyContent: 'space-between',
             flexDirection: 'row'
           }}>
-          {/* <SimpleLineIcons
-            name="menu"
-            size={22}
-            color="#666"
-            style={{ paddingLeft: 12 }}
-          /> */}
           <Text style={{ fontSize: 14, paddingLeft: 20, fontWeight: '700', color: '#333' }}>
             Select Seats
           </Text>
