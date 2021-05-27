@@ -1,5 +1,6 @@
 import React,{ Component } from "react";
-import { ScrollView, View, StyleSheet, Button } from 'react-native';
+import { ScrollView, View, StyleSheet} from 'react-native';
+import {Button,Text} from 'native-base';
 import { Card } from 'react-native-elements'
 
 class MovieShowtime extends Component{
@@ -46,10 +47,10 @@ class MovieShowtime extends Component{
             return(
             <View style={{ flex: 1, marginLeft: index===0 ? 0 : 10 }} >
                 <Button
-                    title={item.time} onPress = {()=> {this.props.navigation.navigate('SeatPicker',{
+                    onPress = {()=> {this.props.navigation.navigate('SeatPicker',{
                       showtimeId: item.id, cinema: this.props.route.params.cinema
                     })}}
-                   />
+                   ><Text>{item.time}</Text></Button>
             </View>)
         })
     }

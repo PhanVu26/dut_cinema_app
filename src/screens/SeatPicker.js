@@ -9,7 +9,7 @@ import { CheckBox,Button,Left, Body, Right,Thumbnail,ListItem,List } from 'nativ
 import { Svg, Path } from 'react-native-svg';
 const { width, height } = Dimensions.get('window');
 
-const ROWS = 3;
+const ROWS = 6;
 const COLS = 10;
 const TIMING = 600;
 const TEXT_HEIGHT = 20;
@@ -208,22 +208,23 @@ class SeatPicker extends Component {
             onPress={this.animate}
           />
         </View>
-        <Text style={{ fontSize: 15, fontWeight: '700' , paddingTop: 30}}>
+        <Text style={{ fontSize: 15, fontWeight: '700' , paddingTop: 50}}>
             Screen
         </Text>
         <FlatList
           numColumns={COLS}
           extraData={this.state.selectedItems}
           data={seats}
-          style={{ flex: 0.8, paddingTop : 30 }}
+          style={{ flex: 0.8, paddingTop : 50 }}
           renderItem={this.renderItem}
         />
+        <View style ={{flex: 0.5}}>
         <View
           style={{
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'row',
-            flex: 0.01
+            flex: 0.2
           }}>
           <View
             style={{
@@ -340,17 +341,22 @@ class SeatPicker extends Component {
             Ghế có thể chọn
           </Text>
         </View>
+        </View>
         <View
           style={{
-            alignItems: 'center',
-            justifyContent: 'center',
             flexDirection: 'row',
+            position: 'absolute', left: 0, right: 0, bottom: 0,
+            paddingRight:20,
+            paddingTop:20,
+            paddingBottom:30,
+            backgroundColor: 'white'
           }}>
           <View
             style={{
               height: TEXT_HEIGHT,
               overflow: 'hidden',
-              backgroundColor: 'transparent'
+              backgroundColor: 'transparent',
+              
             }}>
             <Animated.View
               style={{
@@ -374,7 +380,7 @@ class SeatPicker extends Component {
                       alignItems: 'flex-end',
                       justifyContent: 'center'
                     }}>
-                    <Text style={[styles.text]}>
+                    <Text style={{fontSize: 15, fontWeight: 'bold'}}>
                       {i}
                     </Text>
                   </View>
@@ -382,22 +388,25 @@ class SeatPicker extends Component {
               })}
             </Animated.View>
           </View>
-          <Text style={styles.text}>
+          <Text style={{flex: 1,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              fontSize: 15, 
+              fontWeight: 'bold'}}>
             locations Selected
           </Text>
           <Button
             style = {{
-              width: width / COLS /1.07,
-              height: width / COLS /1.07,
-              alignItems: 'center',
-              justifyContent: 'center'
+              flex: 0.5,
+              justifyContent: 'center',
+              alignItems: 'center'
             }}
             disabled={this.state.selectedItems.length===0?true:false}
             onPress = {()=> {this.props.navigation.navigate('Payment',{
               showtime: movieBooking, selectedTicket: this.state.selectedItems,cinema: this.props.route.params.cinema
             })}}
           >
-            <Text>View</Text>
+            <Text>Tiếp tục</Text>
           </Button>
         </View>
       </View>
@@ -411,7 +420,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingTop: Constants.statusBarHeight,
-    backgroundColor: '#ecf0f1'
+    backgroundColor: '#DDDDDD'
   },
   item: {
     width: width / COLS /1.07,
