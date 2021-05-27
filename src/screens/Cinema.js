@@ -44,7 +44,7 @@ class Cinema extends Component {
                 <Right>
                   <Button
                     onPress = {()=> {this.props.navigation.navigate('ListMovie',{
-                      id: item.id
+                      id: item.id, cinema: item.name
                     })}}
                    >
                     <Text>View</Text>

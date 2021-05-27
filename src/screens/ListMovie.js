@@ -35,7 +35,7 @@ class ListMovie extends Component {
                 <Right>
                   <Button
                     onPress = {()=> {this.props.navigation.navigate('MovieShowtime',{
-                      movie: item,
+                      movie: item, cinema: this.props.route.params.cinema
                     })}}
                    >
                     <Text>View</Text>

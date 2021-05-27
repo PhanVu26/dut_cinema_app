@@ -5,7 +5,7 @@ import { SimpleLineIcons } from '@expo/vector-icons';
 import { Card } from 'react-native-elements'
 import  Constants  from 'expo-constants';
 import * as actions from '../actions/index';
-import { CheckBox,Button,Left, Body, Right,Thumbnail,ListItem } from 'native-base';
+import { CheckBox,Button,Left, Body, Right,Thumbnail,ListItem,List } from 'native-base';
 import { Svg, Path } from 'react-native-svg';
 const { width, height } = Dimensions.get('window');
 
@@ -191,7 +191,7 @@ class SeatPicker extends Component {
       <View style={styles.container}>
         <View
           style={{
-            height: height * 0.1,
+            height: height * 0.01,
             width: width,
             alignItems: 'center',
             justifyContent: 'space-between',
@@ -208,11 +208,14 @@ class SeatPicker extends Component {
             onPress={this.animate}
           />
         </View>
+        <Text style={{ fontSize: 15, fontWeight: '700' , paddingTop: 30}}>
+            Screen
+        </Text>
         <FlatList
           numColumns={COLS}
           extraData={this.state.selectedItems}
           data={seats}
-          style={{ flex: 0.8 }}
+          style={{ flex: 0.8, paddingTop : 30 }}
           renderItem={this.renderItem}
         />
         <View
@@ -220,7 +223,7 @@ class SeatPicker extends Component {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'row',
-            flex: 0.2
+            flex: 0.01
           }}>
           <View
             style={{
@@ -342,7 +345,6 @@ class SeatPicker extends Component {
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'row',
-            flex: 0.2
           }}>
           <View
             style={{
@@ -383,6 +385,20 @@ class SeatPicker extends Component {
           <Text style={styles.text}>
             locations Selected
           </Text>
+          <Button
+            style = {{
+              width: width / COLS /1.07,
+              height: width / COLS /1.07,
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            disabled={this.state.selectedItems.length===0?true:false}
+            onPress = {()=> {this.props.navigation.navigate('Payment',{
+              showtime: movieBooking, selectedTicket: this.state.selectedItems,cinema: this.props.route.params.cinema
+            })}}
+          >
+            <Text>View</Text>
+          </Button>
         </View>
       </View>
     );

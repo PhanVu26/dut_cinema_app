@@ -17,7 +17,7 @@ import ListMovie from "./src/screens/ListMovie";
 import SeatPicker from "./src/screens/SeatPicker";
 import MovieBooking from "./src/screens/MovieBooking";
 import MovieShowtime from "./src/screens/MovieShowtime";
-
+import Paymentfrom from "./src/screens/Payment";
 import LogOutScreen from "./src/screens/LogOutScreen";
 import AuthScreen from "./src/screens/AuthScreen";
 import LoginScreen from "./src/screens/LoginScreen";
@@ -42,6 +42,7 @@ export default function App() {
           <Stack.Screen name="ListMovie" component={ListMovie} />
           <Stack.Screen name="SeatPicker" component={SeatPicker} />
           <Stack.Screen name="MovieShowtime" component={MovieShowtime} />
+          <Stack.Screen name="Payment" component={Payment} />
           <Stack.Screen name="MovieBooking" component={MovieBooking} />
           <Stack.Screen name="TicketPicker" component={TicketPicker} />
           <Stack.Screen name="Auth" component={AuthScreen} />
