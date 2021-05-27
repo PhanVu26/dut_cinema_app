@@ -9,7 +9,7 @@ import { CheckBox,Button,Left, Body, Right,Thumbnail,ListItem,List } from 'nativ
 import { Svg, Path } from 'react-native-svg';
 const { width, height } = Dimensions.get('window');
 
-const ROWS = 6;
+const ROWS = 3;
 const COLS = 10;
 const TIMING = 600;
 const TEXT_HEIGHT = 20;
@@ -347,54 +347,32 @@ class SeatPicker extends Component {
             flexDirection: 'row',
             position: 'absolute', left: 0, right: 0, bottom: 0,
             paddingRight:20,
+            paddingLeft:20,
             paddingTop:20,
             paddingBottom:30,
             backgroundColor: 'white'
           }}>
-          <View
-            style={{
-              height: TEXT_HEIGHT,
-              overflow: 'hidden',
-              backgroundColor: 'transparent',
-              
-            }}>
-            <Animated.View
-              style={{
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                transform: [
-                  {
-                    translateY: this.selectionAnimation
-                  }
-                ]
-              }}>
-              {Array(ROWS * COLS + 1).join(' ').split(' ').map((_, i) => {
-                return (
-                  <View
-                    key={i}
-                    style={{
-                      height: TEXT_HEIGHT,
-                      width: TEXT_HEIGHT * 1.4,
-                      marginRight: 4,
-                      alignItems: 'flex-end',
-                      justifyContent: 'center'
-                    }}>
-                    <Text style={{fontSize: 15, fontWeight: 'bold'}}>
-                      {i}
-                    </Text>
-                  </View>
-                );
-              })}
-            </Animated.View>
-          </View>
-          <Text style={{flex: 1,
+          <View style={{
+              flex: 1,
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              fontSize: 15, 
+              fontWeight: 'bold'}}>
+            <Text style={{flex: 1,
               justifyContent: 'space-between',
               alignItems: 'center',
               fontSize: 15, 
               fontWeight: 'bold'}}>
-            locations Selected
-          </Text>
+              {this.state.selectedItems.length}x Ghế: {this.state.selectedItems.toString()}
+            </Text>
+            <Text style={{flex: 1,
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              fontSize: 15, 
+              fontWeight: 'bold'}}>
+              Tổng cộng: {this.state.selectedItems.length*50000 + "đ"}
+            </Text>
+          </View>
           <Button
             style = {{
               flex: 0.5,
