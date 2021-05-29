@@ -122,9 +122,6 @@ class SeatPicker extends Component {
         for (let ind = 0; ind < allTickets.length; ind++) {
           if(checkRow === allTickets[ind].seat.row && Number(checkColumn) === allTickets[ind].seat.column){
             let type_Id = 1;
-            if(allTickets[ind].seat.type!=="Normal") type_Id = 2;
-            console.log(allTickets[ind].id)
-            console.log(type_Id)
             BookedTickets.push({
                 "id": allTickets[ind].id,
                 "typeId": type_Id
@@ -137,6 +134,7 @@ class SeatPicker extends Component {
         "status": "Hold"
       }
       this.props.holdBooking(data1)
+      return BookedTickets
   }
 
   renderItem = ({ item }) => {
@@ -423,9 +421,9 @@ class SeatPicker extends Component {
                 let user = await AsyncStorage.getItem('account');
                 let account = JSON.parse(user)
                 if(account!==null){
-                  this.handleSubmit(this.props.booking)
+                  let tickets = this.handleSubmit(this.props.booking)
                   this.props.navigation.navigate('Payment',{
-                  showtime: movieBooking, selectedTicket: this.state.selectedItems,cinema: this.props.route.params.cinema, accessToken:account.accessToken
+                  showtime: movieBooking,tickets:tickets, selectedTicket: this.state.selectedItems,cinema: this.props.route.params.cinema, accessToken:account.accessToken
                 })}
                 else{
                   alert("You must login to buy ticket")
