@@ -6,6 +6,7 @@ import { Container, Header, Content, List, ListItem, Thumbnail, Left, Body, Righ
 import { RadioButton } from 'react-native-paper';
    
 export default Payment = (props) =>{
+    const propers = props;
     const {showtime,selectedTicket,cinema} = props.route.params;
     console.log(selectedTicket)
     let movie = showtime.movie;
@@ -108,7 +109,8 @@ return(
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center'
-                }}>
+                }} 
+                onPress = {()=>{propers.navigation.navigate('PayTicket',{})}}>
                     <Text style={{fontSize: 15, 
                 fontWeight: '500'}}>Thanh toán</Text>
             </Button>

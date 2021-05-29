@@ -25,6 +25,7 @@ import RegisterScreen from "./src/screens/RegisterScreen";
 import TempScreen from "./src/screens/TempScreen";
 import Profile from "./src/screens/Profile";
 import TicketPicker from "./src/screens/TicketPicker";
+import PayTicket from "./src/screens/PayTicket";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 const Stack = createStackNavigator();
@@ -43,6 +44,7 @@ export default function App() {
           <Stack.Screen name="SeatPicker" component={SeatPicker} />
           <Stack.Screen name="MovieShowtime" component={MovieShowtime} />
           <Stack.Screen name="Payment" component={Payment} />
+          <Stack.Screen name="PayTicket" component={PayTicket} />
           <Stack.Screen name="MovieBooking" component={MovieBooking} />
           <Stack.Screen name="TicketPicker" component={TicketPicker} />
           <Stack.Screen name="Auth" component={AuthScreen} />
