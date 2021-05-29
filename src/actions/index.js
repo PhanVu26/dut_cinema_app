@@ -64,6 +64,16 @@ export const actFetchDataBookingMovieRequest = (showtimeId) => {
   };
 };
 
+export const actHoldBooking = (data) => {
+  return (dispatch) => {
+    return callApi(`tickets`,"POST",data).then(
+      (res)=>{
+        console.log(res);
+      }
+    )
+  }
+}
+
 export const actFetchDataBookingMovie = (booking) => {
   return {
     type: types.GET_BOOKING_SHOWTIME,

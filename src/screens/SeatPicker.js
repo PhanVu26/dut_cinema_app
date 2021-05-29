@@ -7,6 +7,7 @@ import  Constants  from 'expo-constants';
 import * as actions from '../actions/index';
 import { CheckBox,Button,Left, Body, Right,Thumbnail,ListItem,List } from 'native-base';
 import { Svg, Path } from 'react-native-svg';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const { width, height } = Dimensions.get('window');
 
 const ROWS = 3;
@@ -101,6 +102,43 @@ class SeatPicker extends Component {
 	  return seats;
   };
   
+  checkUserAccount = async () => {
+    try{
+    let account = await AsyncStorage.getItem('account')
+    }
+    catch(error){
+
+    }
+
+  }
+
+  handleSubmit = (booking) => {
+    let allTickets = booking.tickets;
+      let seats = this.state.selectedItems;
+      let BookedTickets =[];
+      for (let index = 0; index < seats.length; index++) {
+        let checkRow = seats[index].substring(0, 1);;
+        let checkColumn = seats[index].substring(1);
+        for (let ind = 0; ind < allTickets.length; ind++) {
+          if(checkRow === allTickets[ind].seat.row && Number(checkColumn) === allTickets[ind].seat.column){
+            let type_Id = 1;
+            if(allTickets[ind].seat.type!=="Normal") type_Id = 2;
+            console.log(allTickets[ind].id)
+            console.log(type_Id)
+            BookedTickets.push({
+                "id": allTickets[ind].id,
+                "typeId": type_Id
+              })
+          }
+        }
+      }
+      let data1 ={
+        "tickets": BookedTickets,
+        "status": "Hold"
+      }
+      this.props.holdBooking(data1)
+  }
+
   renderItem = ({ item }) => {
     const i = item.key;
     const scale = this.animatedValue[item.s].interpolate({
@@ -380,9 +418,21 @@ class SeatPicker extends Component {
               alignItems: 'center'
             }}
             disabled={this.state.selectedItems.length===0?true:false}
-            onPress = {()=> {this.props.navigation.navigate('Payment',{
-              showtime: movieBooking, selectedTicket: this.state.selectedItems,cinema: this.props.route.params.cinema
-            })}}
+            onPress = {async ()=> {
+              try{
+                let user = await AsyncStorage.getItem('account');
+                let account = JSON.parse(user)
+                if(account!==null){
+                  this.handleSubmit(this.props.booking)
+                  this.props.navigation.navigate('Payment',{
+                  showtime: movieBooking, selectedTicket: this.state.selectedItems,cinema: this.props.route.params.cinema, accessToken:account.accessToken
+                })}
+                else{
+                  alert("You must login to buy ticket")
+                }
+              }catch(error){
+                
+              }}}
           >
             <Text>Tiếp tục</Text>
           </Button>
@@ -421,9 +471,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, props) =>{
   return {
-      getBooking : (id) => {
-      dispatch(actions.actFetchDataBookingMovieRequest(id))
-    }
+      getBooking : (id) => { dispatch(actions.actFetchDataBookingMovieRequest(id))},
+      holdBooking: (data) => dispatch(actions.actHoldBooking(data)),
   }
 }
 

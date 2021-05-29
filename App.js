@@ -17,7 +17,7 @@ import ListMovie from "./src/screens/ListMovie";
 import SeatPicker from "./src/screens/SeatPicker";
 import MovieBooking from "./src/screens/MovieBooking";
 import MovieShowtime from "./src/screens/MovieShowtime";
-import Paymentfrom from "./src/screens/Payment";
+import Payment from "./src/screens/Payment";
 import LogOutScreen from "./src/screens/LogOutScreen";
 import AuthScreen from "./src/screens/AuthScreen";
 import LoginScreen from "./src/screens/LoginScreen";
