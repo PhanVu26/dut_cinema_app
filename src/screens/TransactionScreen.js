@@ -6,9 +6,23 @@ import callApi from "../utils/apiCallerServer";
 const { width, height } = Dimensions.get("window");
 
 function Item({ item }) {
+  let d = new Date(item.transaction_time);
+  let month = d.getMonth() + 1;
+  let day = d.getDate();
+  if (month < 10) {
+    month = "0" + month.toString();
+  } else {
+    month = month.toString();
+  }
+  if (day < 10) {
+    day = "0" + day.toString();
+  } else {
+    day = day.toString();
+  }
+  let dateString = d.getFullYear().toString() + "-" + month + "-" + day;
   return (
     <View style={styles.listBody}>
-      <Text style={styles.listItem}>{item.transaction_time.slice(0, 10)}</Text>
+      <Text style={styles.listItem}>{dateString}</Text>
       <Text style={styles.listItem}>{item.ticket.seat.room.cinema.name}</Text>
       <Text style={styles.listItem}>{item.ticket.showtime.movie.name}</Text>
       <Text style={styles.listItem}>{item.price}</Text>
@@ -27,7 +41,7 @@ class TransactionScreen extends Component {
 
   componentDidMount() {
     callApi(
-      "transactions/me?page=1&perPage=100&relations=user,ticket,ticket.showtime,ticket.showtime.movie,ticket.seat,ticket.seat.room,ticket.seat.room.cinema",
+      'transactions/me?orderBy={"transaction_time": "DESC"}&perPage=100&relations=user,ticket,ticket.showtime,ticket.showtime.movie,ticket.seat,ticket.seat.room,ticket.seat.room.cinema',
       "GET",
       null
     )
