@@ -47,6 +47,7 @@ class PayTicket extends Component{
 
     render(){
         let {price} = this.props.route.params
+        console.log(price);
       return (
         <Container  style = {{backgroundColor:'#DDDDDD',paddingTop:100}} >
           <Content padder >
@@ -68,6 +69,7 @@ class PayTicket extends Component{
               <Item stackedLabel>
                 <Label style = {{color:'black'}}>Số tiền thanh toán</Label>
                 <Input
+                  placeholder={price.toString()+"đ"}
                   type="text"
                   autoCapitalize="none"
                   disabled ='true'
