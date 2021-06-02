@@ -1,6 +1,6 @@
-
+import CountDown from 'react-native-countdown-component';
 import React from 'react'
-import { View, Text, Image, ScrollView,StyleSheet } from 'react-native'
+import { View, Text, Image, ScrollView,StyleSheet,Alert } from 'react-native'
 import { Card, Icon } from 'react-native-elements'
 import { Container, Header, Content, List, ListItem, Thumbnail, Left, Body, Right, Button } from 'native-base';
 import { RadioButton } from 'react-native-paper';
@@ -17,6 +17,21 @@ export default Payment = (props) =>{
 return(
     <View style={{flex: 1}}>
     <ScrollView style = {{backgroundColor:'#DDDDDD'}}>
+    <View style={{ flex: 1, height: 10 }} />
+    <CountDown
+            until={180}
+            onFinish={() => Alert.alert("Thông báo","Hết thời gian giữ vé,vui lòng chọn lại vé",[
+                {text: 'OK', onPress: () => {propers.navigation.navigate('SeatPicker')}},
+              ])}
+            digitStyle={{backgroundColor: '#FFF', borderWidth: 2, borderColor: '#1CC625'}}
+            digitTxtStyle={{color: '#1CC625'}}
+            timeLabelStyle={{color: 'red', fontWeight: 'bold'}}
+            separatorStyle={{color: '#1CC625'}}
+            timeToShow={['H', 'M', 'S']}
+            timeLabels={{m: null, s: null}}
+            showSeparator
+            size={10}
+        />
     <Card>
         <Card.Title>Thông tin giao dịch</Card.Title>
         <Card.Divider/>
