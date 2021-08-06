@@ -21,7 +21,7 @@ export default class  MovieBooking extends Component{
     return(
       <ScrollView>
         <Tab.Navigator>
-          <Tab.Screen name="Lịch chiếu" component={MovieShowtime} initialParams ={{movie: this.state.movie}} />
+          {/* <Tab.Screen name="Lịch chiếu" component={MovieShowtime} initialParams ={{movie: this.state.movie}} /> */}
           <Tab.Screen name="Thông tin" component={MovieCard} initialParams ={{movie: this.state.movie}}  />
         </Tab.Navigator>
       </ScrollView>
