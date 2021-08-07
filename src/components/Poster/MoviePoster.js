@@ -27,7 +27,7 @@ export default class MoviePoster extends Component {
 
   render() {
     const { movie, movie: { name, country, duration }, onOpen } = this.props;
-    const poster = "https://th.bing.com/th/id/R9d00690a9f0f98794933edcfd7567444?rik=8htbu1GVX%2bQ7gw&pid=ImgRaw";
+    const poster = movie.image?.mainUrl;
     return (
       <TouchableOpacity style={styles.container} onPress={() => onOpen(movie)}>
         <View style={styles.imageContainer}>

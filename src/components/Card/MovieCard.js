@@ -16,7 +16,7 @@ return(
     <Card>
         <Card.Title>{movie.name}</Card.Title>
         <Card.Divider/>
-        <Card.Image source={{uri: "https://th.bing.com/th/id/R9d00690a9f0f98794933edcfd7567444?rik=8htbu1GVX%2bQ7gw&pid=ImgRaw"}}>
+        <Card.Image source={{uri: movie.image?.mainUrl}}>
         </Card.Image>
         <Text style={{marginTop: 10}}>
           {"Nhà sản xuất: " + movie.producer}
