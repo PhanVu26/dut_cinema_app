@@ -122,6 +122,15 @@ class Profile extends Component {
             </TouchableOpacity>
             <TouchableOpacity
               style={{ ...styles.action, marginTop: 20 }}
+              onPress={() => this.props.navigation.navigate("BookedTickets")}
+            >
+              <FontAwesome name="money" size={20} />
+              <Text style={{ paddingLeft: 10, fontSize: 18 }}>
+                Booked Tickets
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={{ ...styles.action, marginTop: 20 }}
               onPress={() => this.props.navigation.navigate("LogOut")}
             >
               <FontAwesome name="flag" size={20} />

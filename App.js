@@ -27,6 +27,7 @@ import Profile from "./src/screens/Profile";
 import TicketPicker from "./src/screens/TicketPicker";
 import PayTicket from "./src/screens/PayTicket";
 import TransactionScreen from "./src/screens/TransactionScreen";
+import BookedTicketsScreen from "./src/screens/BookedTicketsScreen";
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 const Stack = createStackNavigator();
@@ -53,6 +54,7 @@ export default function App() {
           <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="LogOut" component={LogOutScreen} />
           <Stack.Screen name="Transactions" component={TransactionScreen} />
+          <Stack.Screen name="BookedTickets" component={BookedTicketsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
