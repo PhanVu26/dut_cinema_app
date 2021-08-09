@@ -423,7 +423,7 @@ class SeatPicker extends Component {
                 if(account!==null){
                   let tickets = this.handleSubmit(this.props.booking)
                   this.props.navigation.navigate('Payment',{
-                  showtime: movieBooking,tickets:tickets, selectedTicket: this.state.selectedItems,cinema: this.props.route.params.cinema, accessToken:account.accessToken
+                  status: "book", showtime: movieBooking, tickets:tickets, selectedTicket: this.state.selectedItems, cinema: this.props.route.params.cinema, accessToken: account.accessToken
                 })}
                 else{
                   alert("You must login to buy ticket")
@@ -432,7 +432,33 @@ class SeatPicker extends Component {
                 
               }}}
           >
-            <Text>Tiếp tục</Text>
+            <Text>ĐẶT VÉ</Text>
+          </Button>
+          <View style ={{ paddingRight:10,}}></View>
+          <Button
+            style = {{
+              flex: 0.5,
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+            disabled={this.state.selectedItems.length===0?true:false}
+            onPress = {async ()=> {
+              try{
+                let user = await AsyncStorage.getItem('account');
+                let account = JSON.parse(user)
+                if(account!==null){
+                  let tickets = this.handleSubmit(this.props.booking)
+                  this.props.navigation.navigate('Payment',{
+                    status: "buy", showtime: movieBooking, tickets:tickets, selectedTicket: this.state.selectedItems, cinema: this.props.route.params.cinema, accessToken: account.accessToken
+                })}
+                else{
+                  alert("You must login to buy ticket")
+                }
+              }catch(error){
+                
+              }}}
+          >
+            <Text>MUA VÉ</Text>
           </Button>
         </View>
       </View>

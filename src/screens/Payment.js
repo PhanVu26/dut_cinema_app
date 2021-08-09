@@ -7,8 +7,11 @@ import { RadioButton } from 'react-native-paper';
    
 export default Payment = (props) =>{
     const propers = props;
-    const {showtime,tickets,selectedTicket,cinema} = props.route.params;
-    console.log(selectedTicket)
+    const {status,showtime,tickets,selectedTicket,cinema} = props.route.params;
+    let price = selectedTicket.length*50000;
+    if(status == "book"){
+        price = selectedTicket.length*5000
+    }
     let movie = showtime.movie;
     let room = showtime.room;
     let starttime = showtime.startTime.split("T");
@@ -51,18 +54,18 @@ return(
           {"Giá vé: 50000 đ"}
         </Text>
         <Text style={{marginTop: 10}}>
-          {"Tổng thanh toán: " + selectedTicket.length*50000+" đ"}
+          { status == "buy"?("Tổng thanh toán: " + price +" đ"):("Tổng thanh toán: " + price +" đ (Cần thanh toán phần còn lại tại quầy trước 30')")}
         </Text>
     </Card>
     <Text style ={{marginTop:20,marginBottom:10,marginHorizontal:10, fontSize: 13, fontWeight: '700' }}>Phương thức thanh toán</Text>
     <List style={styles.container}>
         <ListItem thumbnail>
             <Left>
-                <Thumbnail square style={{width: 56, height: 60}} source={{ uri: 'data:image/png;base64,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' }} />
+                <Thumbnail square style={{width: 56, height: 60}} source={{ uri: 'http://2.bp.blogspot.com/-BOGW14riPcQ/VflMge_bUgI/AAAAAAAAA5I/SrpU4vCU5Lk/s400/paypal-la-gi.jpg' }} />
             </Left>
             <Body>
-                <Text>HSBC/Payoo - ATM/VISA/MASTER/</Text>
-                <Text>JCB/QRCODE</Text>
+                <Text>PayPal</Text>
+                <Text></Text>
             </Body>
             <Right>
                 <RadioButton value="first" status={ checked === 'first' ? 'checked' : 'unchecked' }
@@ -79,7 +82,8 @@ return(
             </Body>
             <Right>
                 <RadioButton value="second" status={ checked === 'second' ? 'checked' : 'unchecked' }
-                    onPress={() => setChecked('second')}/>
+                    // onPress={() => setChecked('second')}
+                    />
             </Right>
         </ListItem> 
         <ListItem thumbnail>
@@ -92,7 +96,8 @@ return(
             </Body>
             <Right>
                 <RadioButton value="third" status={ checked === 'third' ? 'checked' : 'unchecked' }
-                    onPress={() => setChecked('third')}/>
+                    // onPress={() => setChecked('third')}
+                    />
             </Right>
         </ListItem> 
     </List>
@@ -119,13 +124,13 @@ return(
                 paddingLeft: 20,
                 paddingTop: 15,
                 fontSize: 15, 
-                fontWeight: 'bold'}}>Tổng cộng: {selectedTicket.length*50000+" đ"}</Text>
+                fontWeight: 'bold'}}>Tổng cộng: {price+" đ"}</Text>
             <Button style ={{flex: 0.5,
                 flexDirection: 'row',
                 justifyContent: 'center',
                 alignItems: 'center'
                 }} 
-                onPress = {()=>{propers.navigation.navigate('PayTicket',{tickets:tickets, price: selectedTicket.length*50000})}}>
+                onPress = {()=>{propers.navigation.navigate('PayTicket',{tickets:tickets, price: price, status: status})}}>
                     <Text style={{fontSize: 15, 
                 fontWeight: '500'}}>Thanh toán</Text>
             </Button>
