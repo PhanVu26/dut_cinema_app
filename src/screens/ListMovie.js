@@ -13,14 +13,15 @@ class ListMovie extends Component {
     }
     componentDidMount(){
         const {id} = this.props.route.params;
-        // // const cinemaId = this.props.navigation.getParams('id');
-        // console.log(typeof id)
-        // console.log("cinema id", id)
         this.props.getListMovies(id);
-        // this.setState(prevState => ({
-        //     movies: [...prevState.movies, this.props.movieShowtime.movies]
-        // }))
     }
+    
+    isMovieShowing = (date) => {
+      const now = new Date().setHours(0, 0, 0, 0);
+      if (Date.parse(date) < now) return true;
+      else return false;
+    };
+
     renderCinema(list){
         const rs = list?.map(item => {
             return (
@@ -49,15 +50,15 @@ class ListMovie extends Component {
   render() {
     const cinemas = this.props.cinemas;
     const {cinemaShowtime} = this.props;
-    console.log("qwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww", cinemaShowtime)
-    //const movies = this.state.movies;
-    //console.log("movies in nnnnnnnnnnnnnnnnnnn", movies)
+    let movieShowing = cinemaShowtime.filter((item) =>
+      this.isMovieShowing(item.releaseDate)
+    );
     return (
       <ScrollView>  
       <Container>
         <Content>
           <List style={styles.container}>
-            {this.renderCinema(cinemaShowtime)}
+            {this.renderCinema(movieShowing)}
           </List>
         </Content>
       </Container>

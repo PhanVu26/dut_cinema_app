@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {ScrollView, StyleSheet} from 'react-native'
 import { Container, Header, Content, List, ListItem, Thumbnail, Text, Left, Body, Right, Button } from 'native-base';
 import * as actions from '../actions/index';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 class Cinema extends Component {
     constructor(props){
         super(props)
@@ -43,9 +44,20 @@ class Cinema extends Component {
                 </Body>
                 <Right>
                   <Button
-                    onPress = {()=> {this.props.navigation.navigate('ListMovie',{
-                      id: item.id, cinema: item.name
-                    })}}
+                    onPress = {async ()=> {
+                      try{
+                        let user = await AsyncStorage.getItem('account');
+                        let account = JSON.parse(user)
+                        if(account!==null){
+                          this.props.navigation.navigate('ListMovie',{
+                              id: item.id, cinema: item.name
+                            })}
+                        else{
+                          alert("You must login to buy ticket")
+                        }
+                      }catch(error){
+                        
+                      }}}
                    >
                     <Text>View</Text>
                   </Button>

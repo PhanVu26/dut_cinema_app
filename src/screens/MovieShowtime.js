@@ -8,7 +8,9 @@ class MovieShowtime extends Component{
         super(props);
         const {movie} = this.props.route.params;
         console.log("movieshowtime", movie)
-        let showtimes = movie.showtimes;
+        let showtimes = movie.showtimes.filter((item) =>
+          this.isShowing(item.startTime.split("T")[0])
+        );
         var TOS = [];
         var dates =[];
         showtimes.map((item,index) => {
@@ -67,6 +69,13 @@ class MovieShowtime extends Component{
             )
         })
     };
+
+    isShowing = (date) => {
+      const now = new Date().setHours(0, 0, 0, 0);
+      if (Date.parse(date) >= now) return true;
+      else return false;
+    };
+    
     render() {
         return (
             <ScrollView>

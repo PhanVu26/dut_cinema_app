@@ -16,7 +16,7 @@ return(
     <Card>
         <Card.Title>{movie.name}</Card.Title>
         <Card.Divider/>
-        <Card.Image source={{uri: movie.image?.mainUrl}}>
+        <Card.Image style={{with:100, height:500}} resizeMode="cover"  source={{uri: movie.image?.mainUrl}}>
         </Card.Image>
         <Text style={{marginTop: 10}}>
           {"Nhà sản xuất: " + movie.producer}

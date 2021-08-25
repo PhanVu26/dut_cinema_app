@@ -98,7 +98,7 @@ class PayTicket extends Component{
                 </View>
               </View>
               <WebView
-                source={{uri: 'https://my-pay-web.web.app/'}}
+                source={{uri: 'https://ticket-booking-c0d1a.firebaseapp.com'}}
                 style={{flex: 1}}
                 onLoadStart={() => {
                   this.setProg(true);
